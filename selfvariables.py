@@ -1,18 +1,17 @@
-class myclass :
+class Variables :
 
     def variables(self):
         self.a=10
         self.b=5
 
     def __init__(self):
-        self.variables() #it will allow u to give memory to all the class atributes if u 
-        #have multiple constructors
+        self.variables() #it will allow u to give memory to all the class attributes if u have multiple constructors
+     
 
-
-    def fun(self):
+    def Print(self):
         print(self.a,self.b)
 
-x=myclass() 
+x=Variables() 
 
 
-x.fun()
+x.Print()
