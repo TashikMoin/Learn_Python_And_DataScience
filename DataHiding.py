@@ -14,11 +14,11 @@ class B(A):
         print(id(self.x))
         super().__init__() """ If we would've called it earlier , then Obj.x , self.x all the 
         functions that are printing any variable named 'x' then they will print the value of 
-        class B's x bcz A's constructor was called earlier but B consructor got executed later 
+        class B's x bcz A's constructor was called earlier & B consructor got executed later 
         so the data of parent will hide and x will always print the value it has in class B 
         but if would have called the super method for parent class at the end of B's constructor
-        or after the attribute x Of B in B's Constructor then it will give value that parent
-        class has """
+        or after the attribute x Of B in B's Constructor then it would've given the value of the
+        parent class attritube x"""
 
     def PrintB(self):
         print(self.x)
