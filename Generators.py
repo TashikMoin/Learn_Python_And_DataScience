@@ -28,7 +28,7 @@ def people_generator(num_people):
         yield person
 
 # t1 = time.clock()
-# people = people_list(10000)
+# people = people_list(10000) uncomment this and comment line 35 to see the result by print the same data using lists
 # t2 = time.clock()
 
 # t1 = time.clock()
