@@ -1,0 +1,182 @@
+- Array
+	we can not make arrays directly in python. we will have to import array module in 
+	order to make an arrays. Python does not supports multidimentional arrays 
+	however, we can make multidimentional arrays by importing modules like numpy.
+	
+	
+- List	
+	* They are simialr to arrays but a list can contain elements of different types.
+	* No size limit.
+	* Dynamic
+	* Represented using [] brackets
+	* Mutable
+	
+	
+	
+my_firstarray = [10,20,30] // correct without array module and python will not stop us if we add a new element having 
+different type because it is a 'list' and not an array.
+my_secondarray = [10,"Tashik",20.5] // correct and allowed without array module because it is a list and they can have different types.
+
+
+Array module
+
+	import array 
+		using this style we will have to write module name again and again(prefixing). using this style
+		we import entire module.
+			for e.g
+				Arr = array.array('write data type code here' , ['write array elements here to initialize']) 
+				Arr = array.array('i' , [10,20,30]) // creates an array of type integer
+				Arr = array.array('f' , [10.1,20.5,30.8]) // creates an array of type float of 4 bytes
+				Arr = array.array('d' , [10.1,20.5,30.8]) // creates an array of type double or float of 8 bytes
+				// here the first array mean module name and the second array means class inside that module
+
+	Note:
+		In python, we do not have any type code to make arrays of strings or character. For strings and 
+		character arrays, we will be using numpy.
+
+
+
+	from array import array 
+		this will allow us to not write module name again and agian (prefixing). also, using this style, we only
+		import classes, objects and variables inside that module.
+			for e.g
+				Arr = array('write data type code here' , ['write array elements here to initialize'])  
+				// here array means the class name.We do not need to write module name here because 
+				the import syntax is different.
+				
+	
+	if we create array using above two mentioned syntax, then we can't add a new element in our array having 
+	different type. Python will stop us from doing that.
+	
+	
+	
+	
+	
+	
+	
+	
+Array and List Functions ( same functions can be used for both list and arrays )
+	1. .append(new element to be inserted at end) 
+	        // if applied on array ( all elements having similar types ) then the element to be appended should also have same type.
+	        arr = array('i',[10,20,30])
+	        arr.append("Tashik") // not allowed we can only append 1 element at a time when appending in same type arrays.
+		arr.append([40,50,60]) // can not append an array type in arrays but it is allowed in lists. if we want to do this
+		                          on arrays then we will have to use extend function.
+		
+		// if applied on lists
+		arr = [10,"Tashik",30.5] // no need to import array module because it is a list.
+		arr.append([50,60,"Ali"]) // can append a single as well as whole lists using append function if applied on list.
+	
+	
+	2. first_array.extend( second array that is to be merged )
+		// use to merge two arrays and it can also be applied to list. 
+		
+		extend and append difference when applied on lists,
+		x = [10,20,30]
+		y = [40,50,60]
+		x.extend(y) // output --> [10, 20, 30, 40, 50 , 60]
+		y.append(x) // output --> [10,20,30,[40,50,60]]
+	
+	
+	3. .insert(index_number, new element)
+	        // used to insert a value at a particular index of an array & lists. if element already exist 
+	        on those indices then existing elements will be shifted towards right.
+	        
+	        
+	4. .pop() 
+	       .pop() // removes element from end of the list and arrays.
+	       .pop(index number) // this variant is used to pop element exist on a given index and rest existing 
+	       elements will be shifted to left.
+	       
+	5. .remove(element to be removed)
+	       // it removes only the first occurence of given element
+	       // if element to be removed does not exist then it gives an error that element not found.
+	       // can be applied to both lsit and arrays.
+	      
+	      
+	6. .index(element whose index is to be returned)
+	       // it returns index of first occurence of given element
+	       // if element does not exist then it gives an error that element not found.
+	       // can be applied to both lsit and arrays.
+	       
+	       
+	7. .reverse()
+		// reverses array and lists.
+		
+	
+	8. .sort()
+		// sorts the arrays and lists.
+		// it can't be applied to appended lists like [40, 80, 60, [10, 20, 30, 40, 80, 60]] 
+	           but can be applied to lists like [10,20,30] etc
+	           
+	9. .clear()
+		// clears and removes all the elements inside list and arrays. makes list and arrays empty [].
+				
+	
+	10. .copy()
+		// returns a copy of given list or array.
+		
+		
+	11. .count(element)
+		// returns count of given element inside list and arrays.
+		// if list is appended or list is nested liek this --> [10,20,[30,40,50]] and if we let say call 
+		count for 30 then it will return a 0 count.
+				
+				
+				
+				
+Slicing on Arrays and Lists
+      - [starting:Ending:StepSize]
+      - if starting is -ve then start taking step from negative and add or move towards right for a step.
+      - if starting is not defined it will be considered as 0th and similarly if ending is not defined 
+      it will be consider till end and if stepsize is not defined it will be considered as 1 by default.
+      
+
+      
+      
+- Nested Lists
+	In nested lists, the inner list will be treated as a single element and whole inner list will be assigned 
+	a index number because it is treated as an element.
+
+
+- Slicing Nested List
+	1. slice or select 'n' nested lists normally using [start:stop:step]
+	2. now add additional two [] [] first [] for ith selected nested list and second [] for jth element in that current selected list.
+	Final formula --> [start:end:step] [i][j]
+	
+- Accessing a Nested List
+	Outer_List[inner_list_index][inner_list_element's_index]
+	
+	
+- Accessing Nested List using for loop
+	for i in my_list:
+		for j in i:
+			print(j)    // to print all nested items as well as normal items
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+				
+				
+				

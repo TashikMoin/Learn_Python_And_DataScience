@@ -1,0 +1,289 @@
+- range( start, end, stepsize ) // start and stepsize are not necessary to provide.
+if we write something like range(10) or range(i) then it means we have provided the final/stopping value.
+// it always starts from 0 and end at n-1 only if no starting point or starting value is given.
+
+
+
+- pass statement // used when condition is satisfied but we dont want to do anything.
+e.g
+	for i in range(10):
+            if(i == 5):
+		pass
+            else:
+		print(i)
+	
+- If python objects have same data there's no extra objects are create but all the variables points / tag to the same memory.
+  however if data is slightly changed in any variable then a new object will be created.
+  example,
+  	if we slice a list like --> mylist=[10,20,30] , x = mylist[0:] and stores it inside x then it is same as original data of list.
+  	therefore in this case no other object will be created but x will also be pointing to the same mylist object memory.
+  	if we could have done something like this, --> mylist=[10,20,30] , x = mylist[1:] now here since we are slicing from 1 -> end
+  	therefore this sliced list is different from original list therefore now a new object will be created with different memory.
+
+
+- del keyword
+	del (variable OR list OR arrays etc names ) // it will delete variable OR list OR arrays etc names
+	
+
+	
+- Keyword Arguments
+	def fun(a,b):
+	// some code
+	
+	fun(b=10,a=100) 
+	// we can change order if we write keywords arguments. for keyword arguments the formal and actual arguments should have same name.
+	
+		
+		
+- Variable length function argument
+	Notation --> *
+	def fun(*my_arguments):
+		access these arguments like an array --> my_arguments[0],my_arguments[1],.....my_arguments[n]
+		
+		
+		
+- Keyword Variable length function argument
+	Notation --> **
+	def fun(**my_arguments):
+		access these arguments like an array --> my_arguments['a'],my_arguments['b'],.....my_arguments[n]
+
+	fun(a=100,b=1000....) 
+	// same key which was passed should be used inside function body to access these arguments. This works like a dictionary.
+
+- 'in' keyword
+str = "my name is tashik"
+"is" in str   // returns true because 'is' string exist in str 
+
+
+
+- 'not in' keyword
+"is" not in str // returns false because 'is' string exist in str
+
+
+
+- 'is' keyword
+x = 10
+y = 10 
+// x and y both points to same memory location
+x is y // returns true
+similarly,
+x = 10
+y = "10"
+// x and y both points to different memory locations
+x is y // returns false
+
+
+
+- Returning multiple values from a function
+	def add(a,b,c,d):
+	    x = a+b
+	    y = c+d
+	    return x,y
+	a,b = add(10,20,30,40)
+	print(a) // 30
+	print(b) // 70
+	
+	
+	
+- Nested or Inner functions
+	Inner functions, also known as nested functions, are functions that you define inside other functions. 
+	In Python, this kind of function has direct access to variables and names defined in the enclosing function. 
+	Inner functions have many uses, most notably as closure factories and decorator functions.
+	
+	example,
+		def greet():
+		    name = 'Tashik'
+		    def hello():  
+		    // this function can access name variable directly however name is not a global variable it 
+		    is local variable for greet function.
+			print('Good Morning {0}'.format(name))
+		    hello()
+
+		greet()
+
+
+
+		
+- lambda expressions
+	syntax --> lambda <space> list_of_arguments_separated_by_',' :  <operation or statement to be returned as result>		
+	example,
+	 x = lambda a,b : a+b
+	 x(10,20) // returns 30
+	 
+	 
+	 
+- Nested lambda expressions
+	syntax --> lambda <space> list_of_arguments_separated_by_',' :  <more lambdas>		
+	example,
+	 x = lambda a,b : (lambda x,y,z : x+y+z/a+b) 
+	 y = x(10,20) // x now returns another lambda
+	 y(30,40,50) // this will return the final result of x+y+z/a+b
+				
+				
+
+- Passing lambdas to functions
+	def fun(x):
+		x(10,20)
+	fun(lambda a,b: a+b)
+				
+				
+				
+- returning lambda function from another function
+	def fun(a,b):
+		return lambda a,b: 2*(a+b)	
+				
+				
+				
+				
+- Accessing global variables inside local variables
+   a = 10
+	def fun():
+		global a // without this global keyword we can not access any global variable inside any local function.
+		while a < 100:
+			print(a)
+		
+				
+				
+- Accessing global variables inside local variables when local variables have same names
+   a = 10
+	def fun():
+		a = 15 // local variable
+		x = global()['a']    // x here contains value of global variable 'a'
+		// using this global function we can access global variable 'a' as well as local variable 'a'.
+		while a < 100:
+			print(a)	
+				
+				
+
+
+- Function decorator
+	a function decorator is a special function that extends the functionality of an existing function.	
+				
+	def x():  <-- decorator function who decorates another function
+		def y(): // nested function inside function x 
+		// some code
+		print('before adding extra functionality')
+		fun()
+		//some code
+		print('after adding extra functionality')
+	return y <-- returning a decorated function
+	// returning y function. y function here is extending the functionality of fun function.	
+				
+				
+	// using this @decor whenever we call fun() first x() will be called then it will return y and finally y will be called and inside y fun() will be called so in this sequence of calling we are basically extending the functionality of fun
+	
+	@decor  
+	def fun(): <-- function which is to be decorated
+		// some code
+	
+	fun()
+	
+	
+	
+	
+	
+- Filter function
+	- Takes a function and a sequence as argument.
+	- Calls the given function for all the elements of given sequence.
+	- A sequence can be a list, array, tuple, a contaienr that supports iterators or iterations.
+	
+	example,
+		a = [ 1, -2, 3, 4, -5]
+		def fun(n): // n --> element_of_a_sequence
+			if( n > 0 ):
+				return true
+		
+		result = filter(fun,a) 
+		// here type of result --> filter object so we can cast it into list object like,
+		result = list(filter(fun,a))
+		// filter will call fun for each element of a and filter out the data and stores in a filter result object 
+		only those elements who satisfies the condition.
+				
+				
+	
+	
+	
+- Map function
+	- Takes a function and a sequence as argument.
+	- Calls the given function for all the elements of given sequence.
+	- A sequence can be a list, array, tuple, a contaienr that supports iterators or iterations.
+	- similar to filter but it also modifies the elements
+	
+	example,
+		num = [ 1, -2, 3, 4, -5]
+		def make_squares(n): // n --> element_of_a_sequence
+			return n*n
+		
+		result = map(make_squares,num) 
+		// here type of result --> map object so we can cast it into list object like,
+		result = list(map(make_squares,num))
+		// map will call make_squares for each element of num, modifies the value of element and stores in a map result object.
+			
+				
+				
+				
+				
+				
+- Generators
+	
+	def squares(numbers):
+		result = []
+		for i in numbers:
+			result.append(i*i)
+		return result  
+		// it will wait until whole loop is not executed and result list will not be destroyed until whole 
+		function is executed and will remain in memory till the complete execution of the function.
+	
+	// by seeing the above function, we can see we have two lists numbers and results and suppose if we were having
+	100000000000000s of number in these lists, then this function would have consumed so much memory and time for
+	computation. In order to do the same task with lesser memory and time we can use generators here instead of lists.
+	
+	modified squares function using generators,
+	
+	def squares(numbers):
+		for i in numbers:
+			yield 	i*i
+	
+	
+	// from above modified function, we can see that we did not create any result array/list which menas we saved our memory 
+	and also we are not returning the entire result at once but what we are doing is we are doing computation for a single 
+	element(item) at a time and return it's square this is done using yield statement the calculation of other items in list
+	is done one by one whenever a call to next function is made. On every next call we calculate the square of next element 
+	in numbers list. Also when we call next we do not pass whole number list to this generator function but only that item 
+	whose value is to be calculated.
+	
+	
+	squares_results = squares(1,2,3,4,5)
+	print(next(squares_results)) // prints 1
+	print(next(squares_results)) // prints 4
+	print(next(squares_results)) // prints 9
+	print(next(squares_results)) // prints 16
+	print(next(squares_results)) // prints 25
+	.... and so on
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				

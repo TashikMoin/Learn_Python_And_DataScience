@@ -1,0 +1,11 @@
+Mutable -> Those objects that can be modified are called mutable objects.
+	Examples --> lists, sets, dictionaries.
+	
+Immutable -> Those objects that can not be modified are called immutable objects.
+	Examples --> bool,int,float,strings,tuples and frozenset
+	
+	str = "Tashik"
+	str[2] = 'z' // not allowed because strings are immutable.
+	but,
+	str = "Ali" // this is allowed because we are not modifying the existing object 
+		       but changing the tag of the pointer object.

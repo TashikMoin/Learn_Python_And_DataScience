@@ -1,0 +1,7 @@
+Strings are immutable objects.
+
+
+- format function
+	used for formating strings
+	print("value of x = {0} , value of y = {1} ".format(10,20)) // output sequence --> 10,20
+	print("value of x = {1} , value of y = {0} ".format(10,20)) // output sequence --> 20,10

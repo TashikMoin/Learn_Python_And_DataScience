@@ -1,0 +1,189 @@
+		Tuples
+		
+		
+- Almost everything is similar to list and arrays
+
+- They are immutable means they can not be modified.
+
+- Takes lesser memory than lists.
+
+- Make tuples only when we do not want to modify the existing data.
+
+- We can not delete a item of a tuple but we can delete entire tuple.
+
+- A tuple can also have multiple types items in it like a list but we can not modify them because they are immutable.
+
+- In order to delete a single item from a tuple we can do slicing in such a way that the deleted items
+  should not become a part of our sliced tuples and finally merge or concate the sliced tuples into one 
+  and delete the entire original tuple using del keyword.
+  
+- They are denoted by ()
+
+- x = (10) this is not a tuple but it will be treated as integer. In order to make it a tuple we will have 
+  to separate it with a ','.
+  x = (10,) // this is a tuple with 1 element.
+  
+- We can use almost all the list and arrays functions in tuple also.
+
+
+
+
+
+               Sets
+               
+               
+- sets are mutable which means they can be modified and no other object is created modification can be done in same set object.
+
+- sets are unordered means data is randomly distributed and shows a different sequence whenever a program is ran.
+  we can't access data using indices in set.
+  
+- it does not accept duplicate elements.
+
+- represented using {} with , separated elements.
+
+- sets can have data of different types like list,tuples etc.
+
+- a non empty set can be created using {} ---> x = { 10 , 20 , 30 , "Tashik" }
+
+- an empty set can be created using set constructor --> set() we dont use {} for empty set creation because {} empty means
+  we created an empty dictionary because {} are also used for making dictionaries but with key value pair.
+  
+- a single item can be added to a set using add(element) function. --> x.add(10)
+
+- multiple items can be added to a set using update function. --> x.update(list/array/other-sets etc) 
+  this update function will not make a nesting but will add items into the set.
+  
+- a set item can be deleted using remove function or discard function. discard function does not give error when element 
+  to be deleted is not found but remove function gives error.
+  
+- a set can be copied to another set of different memory using .copy function. --> x = y.copy() where x and y are sets.
+
+- we can use all set functions like intersection, union, difference, issubset, issuperset etc in set.
+
+
+
+
+
+
+
+		Dictionaries
+		
+		
+- key value pairs
+
+- randomly unordered like set we can not use indicies but can use keys to see the vlaues.
+
+- mutable.
+
+- representation {} with keys
+
+- dictionary creation --> {key1:value1, key2:value2,... keyN:valueN}    dict = { 'x':10 , 'y':20 .... }
+
+- Creation of a dictionary using fromkeys function,
+	mykeys = (key1 , key2 ... keyn)
+	myvalues = (myvalue1, myvalue2 ... myvaluen)
+	mydictionary = dict.fromkeys(mykeys,myvalues)
+	mydictionary  ---> { key1:myvalue1, key2:myvalue2 ... keyN:myvalueN }
+	
+- get(key) function returns the value on given key.
+
+- .items() function returns the entire dictionary and each item is in the form of tuple having a key and a value,
+    { (key,value), (key,value)... } we can type cast it into a list object and loop through and can print only 
+    value by printing every tuple's(element of lsit's) 1st item.
+    
+- .keys() function is used to get all the keys in a single dict_key object and we can typecast it into a list having all the values.
+
+- .values() function is used to get all the values in a single dict_value object we can type cast it into a list having all the values.
+
+- keys should be unique. if we mention key again then ew key and value will be overwritten.
+
+- key should be an immutable type like string,integer,tuple etc.
+
+- A distionary can have multiple type keys and values like list.
+	example,
+		my_dictionary = {'x':10, 10:"Tashik"}
+		print(my_dictionary)
+		// this code is correct and it is allowed in dictionaries.
+
+- Adding new item to a dictionary,
+	x[newitemkey] = 'newitemvalue'
+	
+- an item can be deleted from a dictionary using del keyword ---> del x[existingitemkey] 
+
+- entire dictionary can also be deleted using ---> del x
+
+- To check if key exist in a dictionary or not,
+	any_key_value in dictionary_name // returns true if exist else return false.
+	
+- update(another_dictionary) function can be used to add multiple new keys and values to an existing dictionary.
+
+- Accessing dictionary in a for loop
+	for i in dict:            // here i == key for every item in each for loop iteration
+		print('Key = {0}  Value = {1}'.format(i,dict[i]) )
+		
+
+- Nested dictionaries
+  mydictionary = {   x:10,   MyFirstNestedDictionaryKey:{ nestedkey1:nestedvalue1, nestedkey2:nestedvalue2....nestedkeyN:nestedvalueN }, ....   }
+  
+  Accessing Nested Dictionaries,
+  	mydictionary[x] // gives 0
+  	mydictionary[MyFirstNestedDictionaryKey][nestedkey2] // gives first nested dictionary's value on nestedkey2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

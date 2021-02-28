@@ -1,0 +1,256 @@
+- Numpy
+	A python module for advanced array functions.NumPy is a Python fundamental package used for efficient manipulations and operations on High-level mathematical functions, Multi-dimensional arrays, Linear algebra, Fourier Transformations, Random Number Capabilities, etc. It provides tools for integrating C, C++, and Fortran code in Python. NumPy is mostly used in Python for scientific computing. 
+	
+- NumPy Arrays are faster than Python Lists because of the following reasons
+	An array is a collection of homogeneous data-types that are stored in contiguous memory locations. On the other hand, a list in Python is a collection of heterogeneous data types stored in non-contiguous memory locations.
+The NumPy package breaks down a task into multiple fragments and then processes all the fragments parallelly.
+The NumPy package integrates C, C++, and Fortran codes in Python. These programming languages have very little execution time compared to Python.
+
+	
+
+- Different ways to create array in numpy
+
+1. using numpy array function
+	.array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0, like=None)
+	// if we want to pass arguments in our own defined order, then we can use these attributes name.
+	// dtype attribute means data type
+	.array([elements]) // python will detect type automatically because In arrays, value of elements should be of same type
+	.array([elements], type) // we are telling type name to python.
+	// we can use any method we want from above two.
+
+
+2. using numpy linspace (linearly spaced) function
+	It is used to create an evenly spaced sequence in a specified interval which means the difference between every 
+	element is same from the start element to the last last element.
+	
+	.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+	// start, stop, num, endpoint are original attributes of linspace function so if we want to pass arguments in 
+	our own defined order, then we can use these attributes name.
+	
+	for example,
+	from numpy import *
+	arr = linspace(num=10,start=5,stop=1000) 
+	// here start is not first argument we specified the total number of elements(num) attribute first.
+	print(arr)
+	
+	// Total is 50 by default if not specified. Remember total value also includes the starting and the ending point which means 
+	the total of entire array. 
+	// The elements between start and end are (Total - 2) and difference value is calculated as,
+	difference = start + (stop - start)/(num_elements-1)
+	e.g
+	
+	from numpy import *
+	start = 5
+	stop = 1000
+	num = 10
+	difference = start + (stop - start)/(num_elements-1)
+	arr = linspace(start,stop,num)
+	print(arr) 
+	// gives and array of total 10 elements having first element = 5 and last element = 1000 and difference 
+	   between each element is 155.555.
+	print(difference)   // output --> 115.5555
+	
+
+
+3. using numpy logspace function
+	// similar to linspace but in logspace we have elements in such a way that ith element when divided 
+	   by i-1 th element then ratios are always same.
+	// here start = first base's exponent and stop = last base's exponent. Both start and stop are exponent values.
+	
+	from numpy import *
+	arr = logspace(start=1,stop=10,base=10,num=10) 
+	// means logspace(10^start, 10^stop, base = 10, total or num = 10 )
+	print(arr) // output --> [1.e+01 1.e+02 1.e+03 1.e+04 1.e+05 1.e+06 1.e+07 1.e+08 1.e+09 1.e+10]
+
+
+4. using numpy arange function
+	// it is not arrange it is 'a range'
+	.arange(start,stop,step,dtype=None,like=None)
+	// works like range function
+	example,
+	from numpy import *
+	arr = arange(start=1,stop=10,step=2)
+	print(arr) // output --> [1 3 5 7 9]
+
+
+
+5. using numpy zeros function
+	numpy.zeros(shape, dtype=float, order='C', *, like=None)
+	// shape represents the dimension of array. it is equivalent to total_elements in case of 1D array and a tuple of
+	   integers in case of 2D,3D ...ND arrays that represents rows and columns. (Rows, Columns)
+	   arr = zeros(shape=10) // creates a 1D array of 10 elements having value -> 0
+	   arr = zeros(shape=(3,3)) // creates a 2D array of 3x3 order.
+	// order can have 2 values 'C' and 'F'. C means C style accessing(row major accessing) and 
+	   'F' means fortran accessing(column major accessing).
+	// dtype means data type
+
+
+
+6. using numpy ones function
+	// simialr to zeros but initializes the entire array with 1s.
+
+
+
+
+- Any & All functions
+	Any --> returns 'true' if bool array contains a single 'true' element in it else returns false.
+	All --> returns 'true' when bool array contains all elements --> true.
+	example,
+	Arr1 = [10,20,30]
+	Arr2 = [10,200,300]
+	result = Arr1==Arr2   // result is assigned with a bool array --> [true, false, false]
+	print(any(result)) // true because result bool aray has 1 element true
+	
+	Arr1 = [100,200,300]
+	Arr2 = [100,200,300]
+	result = Arr1==Arr2   // result is assigned with a bool array --> [true, true, true]
+	print(all(result)) // true because result bool array has all elements true
+	
+	
+
+- where function
+	// it is used to perform an operation(condition) and based on that condition this function selects
+	elements from given two arrays and returns a new array having only those elements of array1 and array2
+	that satisfies the where condition.
+	syntax --> where(condition,array1,array2)
+	example,
+	a = array([10,20,300])
+	b = array([100,5,400])
+	result = where(a>b,a,b) // result array --> [100,20,400]
+	
+	// Remember the size of both the arrays must be same. where function only works when both arrays have same sizes.
+	
+	
+
+- nonzero function
+	// it returns an array having indices of all the nonzeros element of given array.
+	example,
+			    0  1  2  3  4  5  6
+		a = array([10,20,300,0,400,5,0])
+		result = nonzero(a) // result array --> [0,1,2,4,5]
+		
+		
+		
+- view and copy functions
+	// view function is used to create array with different memory but still when one is modified the other will be 
+	modified too with the same data items and values.
+	example,
+	a = array([10,20,30])
+	b = a.view()
+	print(id(a))
+	print(id(b))
+	a[0] = 0 // a array is modified but there will be an impact on b array even they do not share memory.
+	print(b)
+	// output
+	139949102849072
+	139949102848976
+	[ 0 20 30]
+	
+	// copy function is used to create array having different memory but when one is modified no other array is modified.
+	example,
+	a = array([10,20,30])
+	b = a.copy()
+	print(id(a))
+	print(id(b))
+	a[0] = 0
+	print(b)
+	// output
+	139949102849072
+	139949102848976
+	[ 10 20 30]
+
+
+
+
+
+- Creating and accessing a 2D array in numpy
+	Arr = array([  [10,20,30], [40,50,60], [70,80,90] ])  // can create N dimension array by further making [].
+	
+	creating a 2D array using zeros and ones functions
+		a = zeros((3,3), dtype=int) // creates a 3x3 matrix with 0s as default value.
+		b = ones((2x2), dtype=int) // creates a 2x2 matrix with 1s as default value.
+	
+	for i in range Arr:
+	    for j in range i:
+	        print(j)
+
+	// every row is treated as an object for outer loop because of ','. it takes elements(objects) that are separated by ','.
+	// every row is then further divided in to object(elements) using inner for loop.
+
+
+
+- flatten function
+	converts n dimensional array into 1D array.
+	example,
+		Arr = array([  [10,20,30], [40,50,60], [70,80,90] ]) 
+		oneD = Arr.flatten() // oneD array --> 10,20,30,40,50,60,70,80,90
+		
+	
+	
+- reshape function
+	changes the current shape or dimension to new given dimension. 
+	syntax,
+	reshape(array_to_be_reshaped, newshape(an int(1D size) or tuple of new dimension having rows and columns(2D size), order='C')
+	
+	example,
+	Arr = array([10,20,30,40,50,60,70,80,90])
+	reshape(Arr,(3,3))
+	
+	Note: the reshape tuple can have 3 values (total sub arrays, rows in sub array, columns in sub arrays)
+	example,
+	Arr = array([10,20,30,40,50,60,70,80,90,100,110,120])
+	Result = reshape(Arr,(2,3,2))
+	print(Result)
+	output
+	[              [   [10  20][30  40][50  60]    ]              [   [70  80][90 100][110 120]   ]          ]
+	// 2 subarrays, each subarray has 3 rows and 2 columns
+	
+	
+	We can do the functionality of flatten using reshape too.
+	example,
+	reshape(Arr,(9))
+	
+	
+	
+- Slicing in 2D array
+	[ row slicing(row selection range)   ,   column slicing(column selecting range from each row) ]
+	Arr = array([  [10,20,30], [40,50,60], [70,80,90] ])
+	Arr[2:3, 0:1] 
+	// output --> 70 because the 2:3 means select 2 -> 3-1 rows which means 2nd row  and  0:1 means select 0 -> 1-1 columns in each selected 
+	row.
+	
+	Result = Arr[0:3, 0:2] 
+	print(Result)
+	// Output,
+	[[10 20]
+	 [40 50]
+	 [70 80]]
+
+
+
+
+- Important numpy array attributes
+
+	Array.nbytes // tells total number of bytes occupied by an array.
+	Array.ndim // tells dimensions of current array.
+	Array.shape // tells dimesions in the form of a tuple or matrix order
+	Array.size // tells how many elements are there inside the array.
+	Array.itemsize // tells size in bytes for each array element.
+	Array.dtype // tells data type of elements exist inside an array.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
