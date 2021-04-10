@@ -1,0 +1,273 @@
+Pandas
+    Pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python.
+
+Types of data structures in Pandas,
+	1. Series 
+	      - 1-Dimensional
+	      - Homogenous (can only have same data type values)
+	      - Mutable values(can be changed if once initialized)
+	      - Immutable size(size is immutable and once if size is defined it can not be changed)
+	      - Series can be created by calling series function,
+
+		pandas/pd.Series(list/tuple/string/dict/leave_it_empty_for_empty_series) 
+                                      OR
+                pd.Series(np.linspace(),np.arange(),np.range(),np.logspace(),np.zeros(),np.ones() etc)
+
+		pd.Series(data=single_values OR numpy_array/list, index=index_values_here) 
+
+                // e.g obj = pd.Series(10, index=range(1,6,2) 
+                // output 
+                   values  --->  10 , 10 , 10
+                   indices --->  1    3    5
+
+                            OR
+   
+                   
+                // e.g obj = pd.Series(data=["january","February","March"], index=[31,28,30] 
+                // output 
+                   values  --->  "january" , "February" , "March"
+                   indices --->      31    ,     28     ,    30
+
+
+
+                 Series Attributes
+		// e.g obj.values  -->  "january" , "February" , "March"
+		// e.g obj.dtype   -->   string
+		// e.g obj.index   -->     31    ,     28     ,    30
+		// e.g obj.itemsize  -->  gives item size of single block if type is float64 then itemsize is 8 bytes.
+                // type(pandas_object)  --> returns series OR dataframe if object is pandas's data structure type.
+		// pandasobj.shape OR pandasobj.size   --> gives total number of element. both shape and size becomes same 
+							   in case of series because shape becomes total elements in series/1D.
+                // pandasobj.ndim // tell total dimensions
+		// pandasobj.nbytes // tells the total space occuppied by pandas object.
+		// pandasobj.empty // gives true if object is empty else gives false.
+		// pandasobj.head(n_total_values) // gives starting n values of pandas object.
+		// pandasobj.tail(n_total_values) // gives n values from end of the pandas object.
+
+                // vector operation   --> pandasobj (any operation) second_operand
+                // e.g pandasobj + 2  // will add 2 with all the elements of pandas object.
+                // e.g pandasobj * 2  // will multiply by 2 with all the elements of pandas object.
+
+		// pandasobj.Sort_values() // sorts in ascending order.
+		// pandasobj.Sort_values(ascending=false) // sorts in descending order.
+		// pandasobj.Sort_indices() // sorts indicies(not values) in ascending order.
+		// pandasobj.Sort_indices(ascending=false) // sorts indicies(not values) in descending order.
+		
+
+		// index filtering
+		// pandasobj[pandasobj > 30] --> gives all the values > 30 in pandasobj.
+		// if without [indices] we do filtering like --> pandasobj > 30 then we will get output in the form true|false values.
+
+
+
+
+
+
+
+
+
+	2. Dataframes (2D)
+	      - 2-Dimensional
+	      - Heterogenous (can have different data type values)
+	      - Mutable values(like series, df'values can be changed if once initialized)
+	      - Immutable size(like series, df'size is also immutable and once if size is defined it can not be changed)
+
+		pandas/pd.DataFrame(2Dlist/2Dtuple/2Dnesteddistionary/series_objects/list_with_dictioanry_obj/tuple_with_dictioanry_obj/leave_it_empty_for_empty_DataFrames) 
+                                      OR
+                pd.DataFrame(np.linspace(2D dict),np.arange(2D dict),np.range(2D dict),np.logspace(2D dict),np.zeros(2D dict),np.ones(2D dict) etc)
+
+
+
+                // Example of DataFrame using nested dictionaries
+
+                obj = pd.DataFrame({   	      
+					      column_name1 : { row_name1: key11,   row_name2: key21,   row_name3: key31,   row_nameN: keyN1},
+					      column_name2 : { row_name1: key12,   row_name2: key22,   row_name3: key32,   row_nameN: keyN2},
+					      column_name3 : { row_name1: key13,   row_name2: key23,   row_name3: key33,   row_nameN: keyN3},
+                                  }) 
+		//DataFrame using a 2D dictionary.
+
+                // output 
+        	           column_name1     column_name2     column_name3    column_nameN
+        	row_name1     key11             key12            key13            .. 
+		row_name2     key21             key22            key23            ..            
+		row_name3     key31             key32            key33            .. 
+		row_nameN     keyN1             keyN2            keyN3            .. 
+
+
+                        OR
+   
+                   
+                // Example of DataFrame using list having dictionary objects in it
+
+                obj = pd.DataFrame([   
+                                              { column_name1: key11,   column_name2: key21,   column_name3: key31,   column_nameN: keyN1} 
+					      { column_name1: key12,   column_name2: key22,   column_name3: key32,   column_nameN: keyN2}
+					      { column_name1: key13,   column_name2: key23,   column_name3: key33,   column_nameN: keyN3}
+                                  ], 
+				  index = ["row#1", "row#2", "row#3", "row#N" ...]) 
+
+                // In this type of DF creation we will have to give row names / indicies by ourselves otherwise 0,1,2..N will be considered by default.
+                //DataFrame using a list having dictionary objects.
+
+
+                // output 
+        	           column_name1     column_name2     column_name3    column_nameN
+        	row_name1     key11             key21            key31            .. 
+		row_name2     key12             key22            key32            ..            
+		row_name3     key13             key23            key33            .. 
+		row_nameN     key1N             key2N            key3N            .. 
+
+
+
+                        OR
+
+
+
+                // Example of DataFrame using nested_list 
+
+                obj = pd.DataFrame([   
+                                              [10,20,30],
+					      [40,50,60],
+					      [70,80,90]
+                                  ], 
+				  index = ["row#1", "row#2", "row#3", "row#N" ...],	// rows name or indices should be given explicitly in positional parameter.	
+				  columns = ["col#1", "col#2", "col#3", "col#N" ...]    // columns name should also be given explicitly in positional parameter.	
+				  ) 
+
+                // In this type of DF creation we will have to give row names as well as column names explicitly.
+                //DataFrame using a list having dictionary objects.
+
+
+                // output 
+        	           column_name1     column_name2     column_name3    column_nameN
+        	row_name1        10               20               30            .. 
+		row_name2        40               50               60           ..            
+		row_name3        70               80               90            .. 
+		row_nameN     key1N             key2N            key3N            .. 
+
+
+
+		      OR
+
+
+
+
+                // Example of DataFrame using keys with ---> list/tuples/series as values
+
+                obj = pd.DataFrame([   
+                                              "key1":list/tuple/series_obj,
+					      "key2":list/tuple/series_obj,
+					      "key3":list/tuple/series_obj,
+                                  ], 
+				  index = ["row#1", "row#2", "row#3", "row#N" ...],	// rows name or indices should be given explicitly in positional parameter.	
+				  ) 
+
+                // In this type of DF creation we will have to give row names as well as column names explicitly.
+                //DataFrame using a list having dictionary objects.
+
+
+                // output 
+        	           	key1             key2             key3           keyN            
+        	row_name1        10               20               30             .. 
+		row_name2        40               50               60             ..            
+		row_name3        70               80               90             .. 
+
+		// Keys ---> column names and each record ---> rows values
+
+
+
+
+
+                DataFrames Attributes
+		// inplace=true  --> modifies the same dataframe after performing any operation it is same as doing something like --> x = x + smth
+		// e.g obj.values  -->  "january" , "February" , "March"
+		// e.g obj.dtype   -->   string
+		// e.g obj.index   -->     returns a list having all rows/record name.
+		// e.g obj.columns   -->     returns a list having all columns name.
+		// e.g obj.axes   -->     returns two lists, one having all rows/record name and other has all column names.
+			Axis = 0 represents rows             Axis = 1 represents columns
+
+		// e.g obj.itemsize  -->  gives item size of single block if type is float64 then itemsize is 8 bytes.
+                // type(pandas_object)  --> returns series OR dataframe if object is pandas's data structure type.
+		// pandasobj.shape OR pandasobj.size   --> gives total number of element. both shape and size becomes same 
+							   in case of series because shape becomes total elements in series/1D.
+
+		// len(DataFrame_obj) --> returns total rows
+		// DF.T  --> gives transpose of dataframe object.
+		// DF.count(0) OR DF.count(axis=0) OR DF.count(axis="index")          ---> all of them returns total rows in a dataframe.
+		// DF.count(1) OR DF.count(axis=1) OR DF.count(axis="columns")          ---> all of them returns total columns in a dataframe.
+                // pandasobj.ndim // tell total dimensions
+		// pandasobj.nbytes // tells the total space occuppied by pandas object.
+		// pandasobj.empty // gives true if object is empty else gives false.
+		// pandasobj.head(n_total_values) // gives starting n values of pandas object.
+		// pandasobj.tail(n_total_values) // gives n values from end of the pandas object.
+
+
+		// Accessing a dataframe columnwise.
+		   Example,
+			DF["column_name"] // gives a single specified column
+			DF[["column_name_1", "column_name_2", "column_name_3", "column_name_N"]] // gives multiple specified columns from the given dataframe object.
+
+
+
+		// Accessing a dataframe rowwise.
+		   Example using LOC function,
+			DF.loc[starting_row/index_name : ending_row/index_name      ,      starting_column_name : ending_column_name]
+			// here first argument can be used for slicing or specifying a range from total rows/records values with specified columns.
+			// here second argument can be used for slicing or specifying a range from total columns column values with specified rows.
+
+		   Example using ILOC function,
+			// it is same as LOC but it take rows and columns numbers(index) not the names of rows and columns but numerics values 
+			   from 0-->size of rows/columns in a dataframe.
+
+
+
+		// Accessing(Reading) OR Writing in a single value from dataframe,
+			df.at["row_name","column_name"]
+			             OR
+			df.iat[row_index,column_index]
+				     OR
+			df.column_name["row_name"]
+
+
+		// Adding a new column or modifying the existing column in a dataframe,
+			df["new_column_name"] = [values in list]
+			df[  values_assignment_start_range:values_assignment_end_range  , column_name   ] = [values in list]   total values --> end - start 
+                        // assigning new values from specific start-end range. 
+
+
+		// Adding a new row or modifying the existing row in a dataframe,
+			df.at['row_name' values_assignment_start_range:values_assignment_end_range]  = [values in a list]      total values --> end - start
+
+
+		// Deleting a row/column
+			del df["column_name"]
+				OR
+			df.drop( [list of columns name to be deleted] , axis=1 )              //axis = 1 if columns are to be deleted
+				OR
+			df.drop( [list of rows name to be deleted] , axis=0 )                 //axis = 0 if rows are to be deleted
+				OR
+			df.drop( [deletion_of_rows_starting_index:deletion_of_rows_ending_index] )  -->  if [2,6] then row 2,3,4,5 will be deleted
+
+
+
+
+		// renaming a row/column
+			df.rename( index={ "old_row1_name":"new_row1_name",	"old_row2_name":"new_row2_name",	"old_rowN_name":"new_rowN_name" } ) 
+			// it will rename given rows with new names.
+
+			df.rename( columns={ "old_column1_name":"new_column1_name",	"old_column2_name":"new_column2_name",	"old_columnN_name":"new_columnN_name" } ) 
+			// it will rename given columns with new names.
+
+
+
+
+
+
+
+
+
+
+
+
